@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchNextMission } from '../services/api';
 import { ErrorAlert } from '../components/ErrorAlert';
@@ -22,6 +22,13 @@ const Home = () => {
     loadMission();
   }, []);
 
+  // Optimizamos el cálculo de la fecha con useMemo
+  // Solo se volverá a ejecutar si mission.date_utc cambia
+  const formattedDate = useMemo(() => {
+    if (!mission?.date_utc) return 'Fecha no disponible';
+    return new Date(mission.date_utc).toLocaleDateString();
+  }, [mission?.date_utc]);
+
   return (
     <div className="dashboard-container">
       <header className="dashboard-header">
@@ -42,7 +49,7 @@ const Home = () => {
           {mission && (
             <div className="mission-card">
               <h3>{mission.name}</h3>
-              <p><strong>Fecha de lanzamiento:</strong> {new Date(mission.date_utc).toLocaleDateString()}</p>
+              <p><strong>Fecha de lanzamiento:</strong> {formattedDate}</p>
               <p><strong>Detalles:</strong> {mission.details || 'No hay detalles disponibles.'}</p>
             </div>
           )}
