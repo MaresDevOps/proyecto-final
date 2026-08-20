@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchNextMission } from '../services/api';
+import { ErrorAlert } from '../components/ErrorAlert';
 
 const Home = () => {
   const [mission, setMission] = useState(null);
@@ -35,7 +36,8 @@ const Home = () => {
         <section className="mission-panel">
           <h2>Próxima Misión Destacada</h2>
           {loading && <p className="loading">Obteniendo datos desde el backend...</p>}
-          {error && <p className="error">{error}</p>}
+          
+          {error && <ErrorAlert message={error} />}
           
           {mission && (
             <div className="mission-card">
