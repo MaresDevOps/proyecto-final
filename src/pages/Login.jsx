@@ -29,23 +29,21 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    try {
-      // Validamos los datos contra el esquema
-      loginSchema.parse(formData);
-      
-      // Si pasa la validación, simulamos login
-      login();
-      navigate('/control-center');
-    } catch (err) {
-      if (err instanceof z.ZodError) {
-        // Extraemos los errores de Zod y los formateamos
-        const formErrors = {};
-        err.errors.forEach((error) => {
-          formErrors[error.path[0]] = error.message;
-        });
-        setErrors(formErrors);
-      }
+    // Usamos safeParse que es más seguro y no lanza excepciones
+    const result = loginSchema.safeParse(formData);
+    
+    if (!result.success) {
+      const formErrors = {};
+      result.error.errors.forEach((error) => {
+        formErrors[error.path[0]] = error.message;
+      });
+      setErrors(formErrors);
+      return;
     }
+
+    // Si pasa la validación, simulamos login
+    login();
+    navigate('/control-center');
   };
 
   return (
