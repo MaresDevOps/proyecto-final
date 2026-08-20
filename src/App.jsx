@@ -29,15 +29,15 @@ function App() {
         <h1>🛰️ Dashboard de Misiones Espaciales</h1>
         <p>Monitoreo y control de misiones en curso</p>
       </header>
-      
+
       <main className="dashboard-content">
         <section className="mission-panel">
           <h2>Próxima Misión Destacada</h2>
-          
+
           {loading && <p className="loading">Obteniendo datos desde el backend...</p>}
-          
+
           {error && <p className="error">{error}</p>}
-          
+
           {mission && (
             <div className="mission-card">
               <h3>{mission.name}</h3>
