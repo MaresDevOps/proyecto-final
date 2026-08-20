@@ -37,3 +37,41 @@
   margin-top: 0;
   color: #f0f6fc;
 }
+
+.loading {
+  color: #8b949e;
+  font-style: italic;
+}
+
+.error {
+  color: #ff7b72;
+  font-weight: bold;
+}
+
+.mission-card {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background-color: #21262d;
+  border-radius: 6px;
+}
+
+.mission-card h3 {
+  margin-top: 0;
+  color: #58a6ff;
+}
+
+.btn-primary {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #238636;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #2ea043;
+}
